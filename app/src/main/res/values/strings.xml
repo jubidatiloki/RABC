@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">RABC</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="categories_array">
+        <item>entrée</item>
+        <item>plat</item>
+        <item>dessert</item>
+        <item>cocktail</item>
+    </string-array>
+
+    <string-array name="difficulte_array">
+        <item>facile</item>
+        <item>moyenne</item>
+        <item>difficile</item>
+    </string-array>
+
+
+    <string name="aide_tag_title">Aide sur les tags</string>
+    <string name="aide_tag_msg">Les tags sont des mots que vous pouvez associer à vos recettes pour les retrouver plus facilement.
+                Vous devez séparer vos tags par une virgule. exemple: salé, chaud, épicé </string>
+    <string name="aide_ing_title">Aide sur les ingrédients</string>
+    <string name="aide_ing_msg">Les ingrédients doivent être séparés par une virgule. exemple: 100g sucre,
+                200g chocolat, 1L lait, 6 oeufs</string>
+
+    <string name="aucuneRecette">Vous n\'avez pas encore de recette de cette catégorie.</string>
+
+    <string name="accueil_label">Bienvenue sur l\'application <i>Recettes des Amateurs de Bonne Cuisine !</i></string>
+    <string name="accueil_libelle">Vous pourrez retrouver différentes recettes prédéfinis, mais également ajouter vos propres
+            recettes, les classer et enfin préparer de bons plats simplement.</string>
+
+</resources>

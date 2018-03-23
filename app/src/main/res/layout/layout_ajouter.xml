@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_principal">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/bloc1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+            <ImageView
+                android:id="@+id/ajout_gallery"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="0.5"
+                android:src="@drawable/ic_gallery"/>
+
+            <TextView
+                android:id="@+id/ajout_titre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:layout_marginBottom="10dp"
+                android:text="Ajouter une recette"
+                android:textSize="30dp" />
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/bloc1"
+            android:layout_marginBottom="10dp"
+            android:weightSum="2">
+
+
+
+            <TextView
+                android:id="@+id/nomRecette"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="Nom: "
+                android:textSize="25dp"/>
+
+            <EditText
+                android:id="@+id/ajout_nomRecette"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|left"
+                android:layout_weight="1.5"
+                android:textSize="15dp"/>
+        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/tpsP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/nom"
+                android:layout_marginBottom="10dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/tpsPreparation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Temps Prép. : "
+                    android:textSize="25dp"/>
+
+                <EditText
+                    android:id="@+id/ajout_tpsPreparation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:inputType="number"
+                    android:textSize="25dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="min"
+                    android:textSize="25dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tpsC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tpsP"
+                android:layout_marginBottom="10dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/tpsCuisson"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Temps Cuiss. : "
+                    android:textSize="25dp"/>
+
+                <EditText
+                    android:id="@+id/ajout_tpsCuisson"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:inputType="number"
+                    android:textSize="25dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="min"
+                    android:textSize="25dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/diff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tpsC"
+                android:layout_marginBottom="10dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/difficulte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:text="Difficulté: "
+                    android:textSize="25dp"/>
+
+
+                <Spinner
+                    android:id="@+id/ajout_difficulte"                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:layout_weight="0.5" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/diff"
+                android:layout_marginBottom="10dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/categorie"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:text="Catégorie: "
+                    android:textSize="25dp"/>
+
+                <Spinner
+                    android:id="@+id/ajout_categorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:layout_weight="0.5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tag_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/diff"
+                android:layout_marginBottom="10dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Tag: "
+                    android:textSize="25dp"/>
+
+                <EditText
+                    android:id="@+id/ajout_tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:maxLines="3"
+                    android:layout_weight="2.5"/>
+
+                <ImageView
+                    android:id="@+id/tag_help"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/ic_help"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tag_linear"
+                android:layout_marginBottom="10dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/ingredients"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Ingrédients: "
+                    android:textSize="25dp"/>
+
+                <EditText
+                    android:id="@+id/ajout_ingredients"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:maxLines="6"
+                    android:layout_weight="2.5"/>
+
+                <ImageView
+                    android:id="@+id/ing_help"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/ic_help"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/etape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/ingredients">
+
+                <TextView
+                    android:id="@+id/label_etape1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="étape 1:"/>
+
+                <EditText
+                    android:id="@+id/ajout_etape1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:maxLines="10"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/ajout_etape"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/custom_button_dark"
+                    android:textColor="@color/black"
+                    android:gravity="center|center"
+                    android:text="Ajouter nouvelle étape"/>
+
+                <Button
+                    android:id="@+id/suppr_etape"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/custom_button_dark"
+                    android:textColor="@color/black"
+                    android:gravity="center|center"
+                    android:textSize="15dp"
+                    android:text="Supprimer dernière étape"/>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/ajout_enregistrer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button_dark"
+                android:textColor="@color/black"
+                android:text="enregistrer"
+                android:textSize="20dp"
+                android:padding="20dp"/>
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
