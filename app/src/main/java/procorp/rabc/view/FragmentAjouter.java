@@ -50,7 +50,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class FragmentAjouter extends Fragment {
 
-    final String[] labelEtape = {"etape1", "etape2","etape3","etape4", "etape5", "etape6", "etape7", "etape8", "etape9", "etape10"};
+    final String[] labelEtape = {"étape 1:", "étape 2:","étape 3:","étape 4:", "étape 5:", "étape 6:", "étape 7:", "étape 8:", "étape 9:", "étape 10:"};
     final String[] editEtape = {"ajout_etape1", "ajout_etape2", "ajout_etape3", "ajout_etape4", "ajout_etape5", "ajout_etape6", "ajout_etape7", "ajout_etape8", "ajout_etape9", "ajout_etape10"};
     LinearLayout ll;
     final TextView[] tv = new TextView[10];

@@ -249,6 +249,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_accueil) {
             fragment = new FragmentAccueil();
 
+        } else if(id == R.id.nav_recettes){
+            bundle.putString("categorie", "none");
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_entree) {
             bundle.putString("categorie", "entrée");
             fragment.setArguments(bundle);

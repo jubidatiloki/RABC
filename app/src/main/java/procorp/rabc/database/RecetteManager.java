@@ -134,4 +134,13 @@ public class RecetteManager {
         return curseur.getCount();
     }
 
+    public Cursor getAllRecettes(){
+        Cursor c = bdd.query(TABLE_RECETTE, new String[] {COL_IDRECETTE, COL_NOMRECETTE, COL_TPSPREPARATION, COL_TPSCUISSON, COL_DIFFICULTE, COL_INGREDIENTS, COL_CATEGORIE, COL_TAG, COL_CHEMINIMG}, null, null, null, null, null);
+        return c;
+    }
+
+    public Cursor getRecettesByNom(String nom){
+        Cursor c = bdd.query(TABLE_RECETTE, new String[] {COL_IDRECETTE, COL_NOMRECETTE, COL_TPSPREPARATION, COL_TPSCUISSON, COL_DIFFICULTE, COL_INGREDIENTS, COL_CATEGORIE, COL_TAG, COL_CHEMINIMG}, COL_NOMRECETTE + " LIKE \"" + nom +"%\"",null, null, null, null);
+        return c;
+    }
 }

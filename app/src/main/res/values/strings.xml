@@ -13,6 +13,22 @@
         <item>cocktail</item>
     </string-array>
 
+
+    <string name="menu_title_accueil">Accueil</string>
+    <string name="menu_title_recettes">Vos recettes</string>
+    <string name="menu_title_entree">Entrée</string>
+    <string name="menu_title_plat">Plats</string>
+    <string name="menu_title_dessert">Desserts</string>
+    <string name="menu_title_cocktail">Cocktails</string>
+    <string name="menu_title_ajouter">Ajouter une recette</string>
+
+    <string name="categorie_aucune">aucune</string>
+    <string name="categorie_entree">entrée</string>
+    <string name="categorie_plat">plat</string>
+    <string name="categorie_dessert">desssert</string>
+    <string name="categorie_cocktail">cocktail</string>
+
+
     <string-array name="difficulte_array">
         <item>facile</item>
         <item>moyenne</item>
@@ -28,6 +44,7 @@
                 200g chocolat, 1L lait, 6 oeufs</string>
 
     <string name="aucuneRecette">Vous n\'avez pas encore de recette de cette catégorie.</string>
+    <string name="rechercheNulle">Vous n\'avez pas de recette de ce nom.</string>
 
     <string name="accueil_label">Bienvenue sur l\'application <i>Recettes des Amateurs de Bonne Cuisine !</i></string>
     <string name="accueil_libelle">Vous pourrez retrouver différentes recettes prédéfinis, mais également ajouter vos propres

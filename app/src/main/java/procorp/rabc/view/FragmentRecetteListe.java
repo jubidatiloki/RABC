@@ -13,6 +13,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +46,13 @@ public class FragmentRecetteListe extends Fragment {
     String cat;
     TextView labelVide;
 
+    //recherche
+    LinearLayout recherche;
+    EditText motRecherche;
+    Button validerRecherche;
+    String nom = "";
+
+
 
     @Nullable
     @Override
@@ -56,6 +66,19 @@ public class FragmentRecetteListe extends Fragment {
 
 
         labelVide = myView.findViewById(R.id.labelVide);
+
+        recherche = myView.findViewById(R.id.recherche);
+        motRecherche = myView.findViewById(R.id.motRecherche);
+        validerRecherche = myView.findViewById(R.id.validerRecherche);
+
+        validerRecherche.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nom = motRecherche.getText().toString();
+                recetteAffList.clear();
+                prepareRecetteAffData();
+            }
+        });
 
         switch (categorie){
             case "entrée":
@@ -71,7 +94,7 @@ public class FragmentRecetteListe extends Fragment {
                 cat = "cocktail";
                 break;
             default:
-                Toast.makeText(myView.getContext(), "probleme de bundle", Toast.LENGTH_SHORT).show();
+                cat = "";
                 break;
         }
         recyclerView = myView.findViewById(R.id.recycler_view);
@@ -131,21 +154,47 @@ public class FragmentRecetteListe extends Fragment {
 
     private void prepareRecetteAffData() {
 
-        if (recetteManager.getRecettesByCategorie(cat).getCount() != 0) {
-            labelVide.setText("");
-            Cursor c = recetteManager.getRecettesByCategorie(cat);
-            c.moveToFirst();
-            for(int i=0; i<recetteManager.getRecettesByCategorie(cat).getCount(); i++){
-                //Toast.makeText(myView.getContext(), "taille: "+c.getCount(), Toast.LENGTH_SHORT).show();
-                int n = c.getInt(0);
-                recette = recetteManager.getRecetteById(n);
-                recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte() , "Tag: " + recette.getTag(), recette.getCheminImg());
-                //Toast.makeText(myView.getContext(), recetteAff.getCheminImg(), Toast.LENGTH_SHORT).show();
-                recetteAffList.add(recetteAff);
-                c.moveToNext();
+        if(cat.equals("")){
+            if (recetteManager.getAllRecettes().getCount() != 0) {
+                labelVide.setText("");
+                recherche.setVisibility(View.VISIBLE);
+                Cursor c = recetteManager.getRecettesByNom(nom);
+                c.moveToFirst();
+                if(recetteManager.getRecettesByNom(nom).getCount() == 0){
+                    labelVide.setText(R.string.rechercheNulle);
+                }
+
+                for(int i=0; i<recetteManager.getRecettesByNom(nom).getCount(); i++){
+                    //Toast.makeText(myView.getContext(), "taille: "+c.getCount(), Toast.LENGTH_SHORT).show();
+                    int n = c.getInt(0);
+                    recette = recetteManager.getRecetteById(n);
+                    recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte() , "Tag: " + recette.getTag(), recette.getCheminImg());
+                    //Toast.makeText(myView.getContext(), recetteAff.getCheminImg(), Toast.LENGTH_SHORT).show();
+                    recetteAffList.add(recetteAff);
+                    c.moveToNext();
+                }
+            }else{
+                labelVide.setText(R.string.aucuneRecette);
             }
         }else{
-            labelVide.setText(R.string.aucuneRecette);
+            if (recetteManager.getRecettesByCategorie(cat).getCount() != 0) {
+                labelVide.setText("");
+                recherche.setVisibility(View.GONE);
+                Cursor c = recetteManager.getRecettesByCategorie(cat);
+                c.moveToFirst();
+                for(int i=0; i<recetteManager.getRecettesByCategorie(cat).getCount(); i++){
+                    //Toast.makeText(myView.getContext(), "taille: "+c.getCount(), Toast.LENGTH_SHORT).show();
+                    int n = c.getInt(0);
+                    recette = recetteManager.getRecetteById(n);
+                    recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte() , "Tag: " + recette.getTag(), recette.getCheminImg());
+                    //Toast.makeText(myView.getContext(), recetteAff.getCheminImg(), Toast.LENGTH_SHORT).show();
+                    recetteAffList.add(recetteAff);
+                    c.moveToNext();
+                }
+            }else{
+                labelVide.setText(R.string.aucuneRecette);
+                recherche.setVisibility(View.GONE);
+            }
         }
         recetteAdapter.notifyDataSetChanged();
     }

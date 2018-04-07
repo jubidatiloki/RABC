@@ -7,24 +7,28 @@
         <item
             android:id="@+id/nav_accueil"
             android:icon="@drawable/ic_home"
-            android:title="Accueil" />
+            android:title="@string/menu_title_accueil" />
+        <item
+            android:id="@+id/nav_recettes"
+            android:icon="@drawable/ic_recettes"
+            android:title="@string/menu_title_recettes" />
         <item
             android:id="@+id/nav_entree"
             android:icon="@drawable/ic_entree"
-            android:title="Entrées" />
+            android:title="@string/menu_title_entree" />
         <item
             android:id="@+id/nav_plat"
             android:icon="@drawable/ic_plat"
-            android:title="Plats" />
+            android:title="@string/menu_title_plat" />
         <item
             android:id="@+id/nav_dessert"
             android:icon="@drawable/ic_dessert"
-            android:title="Desserts" />
+            android:title="@string/menu_title_dessert" />
 
         <item
             android:id="@+id/nav_cocktail"
             android:icon="@drawable/ic_cocktail"
-            android:title="Cocktail" />
+            android:title="@string/menu_title_cocktail" />
     </group>
 
     <item android:title="">
@@ -32,7 +36,7 @@
             <item
                 android:id="@+id/nav_ajouter"
                 android:icon="@drawable/ic_ajouter"
-                android:title="Ajouter" />
+                android:title="@string/menu_title_ajouter" />
 
         </menu>
     </item>

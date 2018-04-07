@@ -94,7 +94,7 @@ public class FragmentRecetteModif extends Fragment {
 
         affectation();
 
-        Toast.makeText(myView.getContext(), "id: " + idRecette, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(myView.getContext(), "id: " + idRecette, Toast.LENGTH_SHORT).show();
         return myView;
     }
 
