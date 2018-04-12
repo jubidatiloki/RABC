@@ -66,12 +66,42 @@
                 android:layout_weight="1.5"
                 android:textSize="15dp"/>
         </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nbPers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/nom"
+                android:layout_marginBottom="10dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/nbPersonnes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="Nb de personnes: "
+                    android:textSize="25dp"/>
+
+                <EditText
+                    android:id="@+id/ajout_nbPersonnes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|left"
+                    android:inputType="number"
+                    android:layout_weight="0.5"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+
+
+
             <LinearLayout
                 android:id="@+id/tpsP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_below="@id/nom"
+                android:layout_below="@id/nbPers"
                 android:layout_marginBottom="10dp"
                 android:weightSum="3">
 

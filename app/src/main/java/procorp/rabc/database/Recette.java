@@ -17,11 +17,13 @@ public class Recette {
     private String categorie;
     private String tag;
     private String cheminImg;
+    private int nbPersonnes;
+    private int favoris;
 
 
     public Recette(){}
 
-    public Recette(String nomRecette, int tpsPreparation, int tpsCuisson, String difficulte, String ingredients, String categorie, String tag, String cheminImg) {
+    public Recette(String nomRecette, int tpsPreparation, int tpsCuisson, String difficulte, String ingredients, String categorie, String tag, String cheminImg, int nbPersonnes, int favoris) {
         this.nomRecette = nomRecette;
         this.tpsPreparation = tpsPreparation;
         this.tpsCuisson = tpsCuisson;
@@ -30,6 +32,8 @@ public class Recette {
         this.categorie = categorie;
         this.tag = tag;
         this.cheminImg = cheminImg;
+        this.nbPersonnes = nbPersonnes;
+        this.favoris = favoris;
     }
 
     public int getIdRecette() {
@@ -66,6 +70,10 @@ public class Recette {
 
     public String getCheminImg(){ return cheminImg; }
 
+    public int getNbPersonnes(){ return nbPersonnes; }
+
+    public int getFavoris(){ return favoris; }
+
     public void setIdRecette(int idRecette) {
         this.idRecette = idRecette;
     }
@@ -100,6 +108,10 @@ public class Recette {
 
     public void setCheminImg(String cheminImg){ this.cheminImg = cheminImg; }
 
+    public void setNbPersonnes(int nbPersonnes){ this.nbPersonnes = nbPersonnes; }
+
+    public void setFavoris(int favoris){ this.favoris = favoris; }
+
 
     @Override
     public String toString() {
@@ -113,6 +125,8 @@ public class Recette {
                 ", categorie='" + categorie + '\'' +
                 ", tag=" + tag +
                 ", cheminImg=" + cheminImg +
+                ", nbPersonnes=" + nbPersonnes +
+                ", favoris=" + favoris +
                 '}';
     }
 }

@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class InstructionManager {
 
-    private static final int VERSION_BDD = 4;
+    private static final int VERSION_BDD = 6;
     private static final String NOM_BDD = "etape.db";
 
     private static final String TABLE_INSTRUCTION = "table_instruction";

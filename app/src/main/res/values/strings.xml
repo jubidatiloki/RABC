@@ -13,6 +13,12 @@
         <item>cocktail</item>
     </string-array>
 
+    <string name="nom_recette_defaut_entree1">Salade quercynoise</string>
+    <string name="nom_recette_defaut_plat1">Tartiflette</string>
+    <string name="nom_recette_defaut_dessert1">Pain perdu</string>
+    <string name="nom_recette_defaut_dessert2">Mousse au chocolat</string>
+    <string name="nom_recette_defaut_cocktail1">Punch</string>
+
 
     <string name="menu_title_accueil">Accueil</string>
     <string name="menu_title_recettes">Vos recettes</string>
@@ -20,6 +26,7 @@
     <string name="menu_title_plat">Plats</string>
     <string name="menu_title_dessert">Desserts</string>
     <string name="menu_title_cocktail">Cocktails</string>
+    <string name="menu_title_favoris">Favoris</string>
     <string name="menu_title_ajouter">Ajouter une recette</string>
 
     <string name="categorie_aucune">aucune</string>
@@ -44,6 +51,7 @@
                 200g chocolat, 1L lait, 6 oeufs</string>
 
     <string name="aucuneRecette">Vous n\'avez pas encore de recette de cette catégorie.</string>
+    <string name="aucuneRecetteFavoris">Vous n\'avez pas de recette enregistrée en favoris.</string>
     <string name="rechercheNulle">Vous n\'avez pas de recette de ce nom.</string>
 
     <string name="accueil_label">Bienvenue sur l\'application <i>Recettes des Amateurs de Bonne Cuisine !</i></string>

@@ -61,7 +61,10 @@ public class FragmentRecetteModif extends Fragment {
 
     ImageView gallery;
     String path = "";
+    ImageView favoris;
+    int boolFav;
     EditText Enom;
+    EditText EnbPers;
     EditText EtpsPrep;
     EditText EtpsCuiss;
     Spinner spinnDifficulte;
@@ -111,7 +114,9 @@ public class FragmentRecetteModif extends Fragment {
         ll = myView.findViewById(R.id.etape);
 
         gallery = myView.findViewById(R.id.modif_gallery);
+        favoris = myView.findViewById(R.id.modif_favoris);
         Enom = myView.findViewById(R.id.modif_nomRecette);
+        EnbPers = myView.findViewById(R.id.modif_nbPersonnes);
         EtpsPrep = myView.findViewById(R.id.modif_tpsPreparation);
         EtpsCuiss = myView.findViewById(R.id.modif_tpsCuisson);
 
@@ -174,11 +179,32 @@ public class FragmentRecetteModif extends Fragment {
 
         //gallery
         Enom.setText(recette.getNomRecette());
+        EnbPers.setText(Integer.toString(recette.getNbPersonnes()));
         if(recette.getCheminImg().equals("")) {
-            gallery.setImageResource(R.drawable.ic_gallery);
+            if(recette.getIdRecette() == 1 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_entree1))){
+                gallery.setImageResource(R.mipmap.defaut_salade_quercynoise);
+            }else if(recette.getIdRecette() == 2 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_plat1))){
+                gallery.setImageResource(R.mipmap.defaut_tartiflette);
+            }else if(recette.getIdRecette() == 3 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_dessert1))){
+                gallery.setImageResource(R.mipmap.defaut_pain_perdu);
+            }else if(recette.getIdRecette() == 4 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_dessert2))){
+                gallery.setImageResource(R.mipmap.defaut_mousse_chocolat);
+            }else if(recette.getIdRecette() == 5 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_cocktail1))){
+                gallery.setImageResource(R.mipmap.defaut_punch);
+            }else {
+                gallery.setImageResource(R.drawable.ic_gallery);
+            }
         }else{
             gallery.setImageBitmap(BitmapFactory.decodeFile(recette.getCheminImg()));
         }
+        if(recette.getFavoris() == 1){
+            favoris.setImageResource(R.drawable.ic_full_star);
+        }else{
+            favoris.setImageResource(R.drawable.ic_blank_star);
+        }
+        boolFav = recette.getFavoris();
+
+
         gallery.setVisibility(View.VISIBLE);
         path = recette.getCheminImg();
         EtpsPrep.setText(Integer.toString(recette.getTpsPreparation()));
@@ -220,6 +246,19 @@ public class FragmentRecetteModif extends Fragment {
             @Override
             public void onClick(View view) {
                 loadImagefromGallery(view);
+            }
+        });
+
+        favoris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(boolFav == 1){
+                    favoris.setImageResource(R.drawable.ic_blank_star);
+                    boolFav = 0;
+                }else{
+                    favoris.setImageResource(R.drawable.ic_full_star);
+                    boolFav = 1;
+                }
             }
         });
 
@@ -290,11 +329,12 @@ public class FragmentRecetteModif extends Fragment {
                         videEtape = true;
                     }
                 }
-                if(Enom.getText().toString().equals("") || EtpsPrep.getText().toString().equals("") || EtpsCuiss.getText().toString().equals("")
+                if(Enom.getText().toString().equals("") || EnbPers.getText().toString().equals("") || EtpsPrep.getText().toString().equals("") || EtpsCuiss.getText().toString().equals("")
                         || Eingredient.getText().toString().equals("") || videEtape){
                     Toast.makeText(myView.getContext(), "Vous devez renseigner toutes les informations concernant la recette.", Toast.LENGTH_SHORT).show();
                 }else{
                     String nom = Enom.getText().toString();
+                    int nbPers = Integer.parseInt(EnbPers.getText().toString());
                     int tpsPrep = Integer.parseInt(EtpsPrep.getText().toString());
                     int tpsCuiss = Integer.parseInt(EtpsCuiss.getText().toString());
                     String difficulte = spinnDifficulte.getSelectedItem().toString();
@@ -311,6 +351,8 @@ public class FragmentRecetteModif extends Fragment {
                     recette.setTag(tag);
                     recette.setIngredients(ingredients);
                     recette.setCheminImg(path);
+                    recette.setNbPersonnes(nbPers);
+                    recette.setFavoris(boolFav);
                     recetteManager.updateRecette(idRecette, recette);
 
 

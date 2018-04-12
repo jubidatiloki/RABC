@@ -14,10 +14,12 @@ public class RecetteAff {
     private String difficulte;
     private String tag;
     private String cheminImg;
+    private int nbPersonnes;
+    private int favoris;
 
     public RecetteAff(){}
 
-    public RecetteAff(int idRecette, String nomRecette, String tpsPreparation, String tpsCuisson, String difficulte, String tag, String cheminImg) {
+    public RecetteAff(int idRecette, String nomRecette, String tpsPreparation, String tpsCuisson, String difficulte, String tag, String cheminImg, int nbPersonnes, int favoris) {
         this.idRecette = idRecette;
         this.nomRecette = nomRecette;
         this.tpsPreparation = tpsPreparation;
@@ -25,6 +27,8 @@ public class RecetteAff {
         this.difficulte = difficulte;
         this.tag = tag;
         this.cheminImg = cheminImg;
+        this.nbPersonnes = nbPersonnes;
+        this.favoris = favoris;
     }
 
     public int getIdRecette(){ return idRecette; }
@@ -51,6 +55,10 @@ public class RecetteAff {
 
     public String getCheminImg() { return cheminImg; }
 
+    public int getNbPersonnes(){ return nbPersonnes; }
+
+    public int getFavoris(){ return favoris; }
+
     public void setIdRecette(int idRecette){ this.idRecette = idRecette; }
 
     public void setNomRecette(String nomRecette) {
@@ -75,6 +83,10 @@ public class RecetteAff {
 
     public void setCheminImg(String cheminImg) { this.cheminImg = cheminImg; }
 
+    public void setNbPersonnes(int nbPersonnes){ this.nbPersonnes = nbPersonnes; }
+
+    public void setFavoris(int favoris){ this.favoris = favoris; }
+
     @Override
     public String toString() {
         return "RecetteAff{" +
@@ -85,6 +97,8 @@ public class RecetteAff {
                 ", difficulte=" + difficulte +
                 ", tag='" + tag + '\'' +
                 ", cheminImg=" + cheminImg + '\'' +
+                ", nbPersonnes=" + nbPersonnes +
+                ", favoris=" + favoris +
                 '}';
     }
 }

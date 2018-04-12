@@ -63,6 +63,7 @@ public class FragmentAjouter extends Fragment {
     ImageView gallery;
     String path = "";
     EditText Enom;
+    EditText EnbPers;
     EditText EtpsPrep;
     EditText EtpsCuiss;
     Spinner spinnDifficulte;
@@ -107,6 +108,7 @@ public class FragmentAjouter extends Fragment {
         });
 
         Enom = myView.findViewById(R.id.ajout_nomRecette);
+        EnbPers = myView.findViewById(R.id.ajout_nbPersonnes);
         EtpsPrep = myView.findViewById(R.id.ajout_tpsPreparation);
         EtpsCuiss = myView.findViewById(R.id.ajout_tpsCuisson);
 
@@ -144,11 +146,12 @@ public class FragmentAjouter extends Fragment {
                         videEtape = true;
                     }
                 }
-                if(Enom.getText().toString().equals("") || EtpsPrep.getText().toString().equals("") || EtpsCuiss.getText().toString().equals("")
+                if(Enom.getText().toString().equals("") || EnbPers.getText().toString().equals("") || EtpsPrep.getText().toString().equals("") || EtpsCuiss.getText().toString().equals("")
                         || Eingredient.getText().toString().equals("") || videEtape){
                     Toast.makeText(myView.getContext(), "Vous devez renseigner toutes les informations concernant la recette.", Toast.LENGTH_SHORT).show();
                 }else{
                     String nom = Enom.getText().toString();
+                    int nbPers = Integer.parseInt(EnbPers.getText().toString());
                     int tpsPrep = Integer.parseInt(EtpsPrep.getText().toString());
                     int tpsCuiss = Integer.parseInt(EtpsCuiss.getText().toString());
                     String difficulte = spinnDifficulte.getSelectedItem().toString();
@@ -165,6 +168,8 @@ public class FragmentAjouter extends Fragment {
                     recette.setTag(tag);
                     recette.setIngredients(ingredients);
                     recette.setCheminImg(path);
+                    recette.setNbPersonnes(nbPers);
+                    recette.setFavoris(0);
                     recetteManager.insertRecette(recette);
 
                     for(int i = 0; i<nbEtape; i++){

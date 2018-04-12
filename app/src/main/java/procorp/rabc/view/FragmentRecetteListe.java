@@ -44,6 +44,7 @@ public class FragmentRecetteListe extends Fragment {
     RecetteAff recetteAff;
     Recette recette;
     String cat;
+    String titre;
     TextView labelVide;
 
     //recherche
@@ -83,15 +84,23 @@ public class FragmentRecetteListe extends Fragment {
         switch (categorie){
             case "entrée":
                 cat = "entrée";
+                titre = "Vos entrées";
                 break;
             case "plat":
                 cat = "plat";
+                titre = "Vos plats";
                 break;
             case "dessert":
                 cat = "dessert";
+                titre = "Vos desserts";
                 break;
             case "cocktail":
                 cat = "cocktail";
+                titre = "Vos cocktails";
+                break;
+            case "favoris":
+                cat = "favoris";
+                titre = "Vos favoris";
                 break;
             default:
                 cat = "";
@@ -154,45 +163,66 @@ public class FragmentRecetteListe extends Fragment {
 
     private void prepareRecetteAffData() {
 
-        if(cat.equals("")){
+        if(cat.equals("")) {
             if (recetteManager.getAllRecettes().getCount() != 0) {
-                labelVide.setText("");
+                labelVide.setVisibility(View.GONE);
                 recherche.setVisibility(View.VISIBLE);
                 Cursor c = recetteManager.getRecettesByNom(nom);
                 c.moveToFirst();
-                if(recetteManager.getRecettesByNom(nom).getCount() == 0){
+                if (recetteManager.getRecettesByNom(nom).getCount() == 0) {
+                    labelVide.setVisibility(View.VISIBLE);
                     labelVide.setText(R.string.rechercheNulle);
                 }
 
-                for(int i=0; i<recetteManager.getRecettesByNom(nom).getCount(); i++){
-                    //Toast.makeText(myView.getContext(), "taille: "+c.getCount(), Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < recetteManager.getRecettesByNom(nom).getCount(); i++) {
                     int n = c.getInt(0);
                     recette = recetteManager.getRecetteById(n);
-                    recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte() , "Tag: " + recette.getTag(), recette.getCheminImg());
-                    //Toast.makeText(myView.getContext(), recetteAff.getCheminImg(), Toast.LENGTH_SHORT).show();
+                    recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte(), "Tag: " + recette.getTag(), recette.getCheminImg(), recette.getNbPersonnes(), recette.getFavoris());
+                    recetteAffList.add(recetteAff);
+                    c.moveToNext();
+                }
+            } else {
+                labelVide.setText(R.string.aucuneRecette);
+                labelVide.setVisibility(View.VISIBLE);
+            }
+        }else if(cat.equals("favoris")){
+            if (recetteManager.getFavoris().getCount() != 0) {
+                labelVide.setText(titre);
+                labelVide.setVisibility(View.VISIBLE);
+                recherche.setVisibility(View.GONE);
+                Cursor c = recetteManager.getFavoris();
+                c.moveToFirst();
+                for(int i=0; i<recetteManager.getFavoris().getCount(); i++){
+                    int n = c.getInt(0);
+                    recette = recetteManager.getRecetteById(n);
+                    recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte() , "Tag: " + recette.getTag(), recette.getCheminImg(), recette.getNbPersonnes(), recette.getFavoris());
                     recetteAffList.add(recetteAff);
                     c.moveToNext();
                 }
             }else{
-                labelVide.setText(R.string.aucuneRecette);
+                labelVide.setText(R.string.aucuneRecetteFavoris);
+                labelVide.setVisibility(View.VISIBLE);
+                recherche.setVisibility(View.GONE);
             }
+
+
         }else{
             if (recetteManager.getRecettesByCategorie(cat).getCount() != 0) {
-                labelVide.setText("");
+                labelVide.setText(titre);
+                labelVide.setVisibility(View.VISIBLE);
                 recherche.setVisibility(View.GONE);
                 Cursor c = recetteManager.getRecettesByCategorie(cat);
                 c.moveToFirst();
                 for(int i=0; i<recetteManager.getRecettesByCategorie(cat).getCount(); i++){
-                    //Toast.makeText(myView.getContext(), "taille: "+c.getCount(), Toast.LENGTH_SHORT).show();
                     int n = c.getInt(0);
                     recette = recetteManager.getRecetteById(n);
-                    recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte() , "Tag: " + recette.getTag(), recette.getCheminImg());
-                    //Toast.makeText(myView.getContext(), recetteAff.getCheminImg(), Toast.LENGTH_SHORT).show();
+                    recetteAff = new RecetteAff(recette.getIdRecette(), recette.getNomRecette(), "tpsPrep: " + recette.getTpsPreparation() + "min", "tpsCuiss: " + recette.getTpsCuisson() + "min", "difficulté: " + recette.getDifficulte() , "Tag: " + recette.getTag(), recette.getCheminImg(), recette.getNbPersonnes(), recette.getFavoris());
                     recetteAffList.add(recetteAff);
                     c.moveToNext();
                 }
             }else{
                 labelVide.setText(R.string.aucuneRecette);
+                labelVide.setVisibility(View.VISIBLE);
                 recherche.setVisibility(View.GONE);
             }
         }

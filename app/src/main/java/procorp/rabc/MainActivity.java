@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         checkPermissions();
 
         recette = new Recette();
-        recette.setNomRecette("salade quercynoise");
+        recette.setNomRecette(getResources().getString(R.string.nom_recette_defaut_entree1));
         recette.setTpsPreparation(15);
         recette.setTpsCuisson(0);
         recette.setIngredients("salade, foie gras, gésiers de canard, huile de noix, vinaigrette");
@@ -75,6 +74,8 @@ public class MainActivity extends AppCompatActivity
         recette.setCategorie("entrée");
         recette.setTag("salé, froid");
         recette.setCheminImg("");
+        recette.setNbPersonnes(4);
+        recette.setFavoris(0);
         recetteManager.insertRecette(recette);
 
         instruction = new Instruction();
@@ -84,8 +85,8 @@ public class MainActivity extends AppCompatActivity
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(2);
-        instruction.setLibelle("Découpez ensuite le foie gras en petits morceaux (de petite taille pour manger tel quel, " +
-                "ou en plus gros morceau pour le manger avec du pain en accompagnement).");
+        instruction.setLibelle("Découpez ensuite le foie gras en petits morceaux (de petite taille pour manger avec la salade, " +
+                "ou en plus gros morceaux pour le manger avec du pain en accompagnement).");
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(3);
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 
 
         recette = new Recette();
-        recette.setNomRecette("tartiflette");
+        recette.setNomRecette(getResources().getString(R.string.nom_recette_defaut_plat1));
         recette.setTpsPreparation(30);
         recette.setTpsCuisson(60);
         recette.setIngredients("pomme de terre, lardons, oignon, reblochon, crème fraiche");
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity
         recette.setCategorie("plat");
         recette.setTag("salé, chaud");
         recette.setCheminImg("");
+        recette.setNbPersonnes(4);
+        recette.setFavoris(0);
         recetteManager.insertRecette(recette);
 
         instruction = new Instruction();
@@ -132,7 +135,7 @@ public class MainActivity extends AppCompatActivity
 
 
         recette = new Recette();
-        recette.setNomRecette("pain perdu");
+        recette.setNomRecette(getResources().getString(R.string.nom_recette_defaut_dessert1));
         recette.setTpsPreparation(5);
         recette.setTpsCuisson(5);
         recette.setIngredients("pain, oeuf, lait, sucre, beurre");
@@ -140,6 +143,8 @@ public class MainActivity extends AppCompatActivity
         recette.setCategorie("dessert");
         recette.setTag("sucré, chaud");
         recette.setCheminImg("");
+        recette.setNbPersonnes(4);
+        recette.setFavoris(0);
         recetteManager.insertRecette(recette);
 
         instruction = new Instruction();
@@ -157,41 +162,42 @@ public class MainActivity extends AppCompatActivity
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(4);
-        instruction.setLibelle("Conseil: peut être manger saupoudré de sucre ou avec du nutella pour les plus groumands.");
+        instruction.setLibelle("Conseil: peut être mangé avec du sucre ou avec du nutella pour les plus groumands.");
         instructionManager.insertInstruction(instruction);
         Toast.makeText(this, "ajout de la recette: "+recette.getNomRecette(), Toast.LENGTH_SHORT).show();
 
 
         recette = new Recette();
-        recette.setNomRecette("mousse au chocolat");
+        recette.setNomRecette(getResources().getString(R.string.nom_recette_defaut_dessert2));
         recette.setTpsPreparation(40);
         recette.setTpsCuisson(10);
-        recette.setIngredients("chocolat noir, oeuf, sucre, beurre");
+        recette.setIngredients("240g chocolat noir, 6 oeuf, 60g sucre, 60g beurre");
         recette.setDifficulte("facile");
         recette.setCategorie("dessert");
         recette.setTag("sucré, froid");
         recette.setCheminImg("");
+        recette.setNbPersonnes(7);
+        recette.setFavoris(1);
         recetteManager.insertRecette(recette);
 
         instruction = new Instruction();
         instruction.setNumEtape(1);
         instruction.setIdRecette(recetteManager.getRecetteByNom(recette.getNomRecette()).getIdRecette());
-        instruction.setLibelle("Cassez les oeufs et séparez dans deux saladiers les blancs et les jaunes.");
+        instruction.setLibelle("Casser les oeufs et séparez dans deux saladiers les blancs et les jaunes.");
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(2);
-        instruction.setLibelle("Cassez le chocolat en morceaux et le mettre à chauffer dans une casserolle à fond épais" +
+        instruction.setLibelle("Casser le chocolat en morceaux et le mettre à chauffer dans une casserolle à fond épais" +
                 " (en ajoutant un filet d'eau).");
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(3);
-        instruction.setLibelle("Cassez le chocolat en morceaux et le mettre à chauffer dans une casserolle à fond épais" +
-                " (en ajoutant un filet d'eau). Laissez le chocolat chauffer, sans cesser de remuer, jusqu'à ce que le chocolat " +
+        instruction.setLibelle("Laisser le chocolat chauffer, sans cesser de remuer, jusqu'à ce que le chocolat " +
                 "soit entièrement fondu.");
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(4);
-        instruction.setLibelle("Battre les blancs en neige.");
+        instruction.setLibelle("Monter les blancs en neige.");
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(5);
@@ -199,28 +205,50 @@ public class MainActivity extends AppCompatActivity
         instructionManager.insertInstruction(instruction);
 
         instruction.setNumEtape(6);
-        instruction.setLibelle("Enfin mélangez le chocolat et les blanc en neige (chocolat dans les blancs en neige). " +
+        instruction.setLibelle("Enfin, mélanger le chocolat et les blanc en neige (chocolat dans les blancs en neige). " +
                 "Mélangez frénétiquement, toujours dans le même sens, jusqu'à ce qu'il n'y est plus de grumeaux.");
         instructionManager.insertInstruction(instruction);
         Toast.makeText(this, "ajout de la recette: "+recette.getNomRecette(), Toast.LENGTH_SHORT).show();
 
 
         recette = new Recette();
-        recette.setNomRecette("punch");
-        recette.setTpsPreparation(15);
+        recette.setNomRecette(getResources().getString(R.string.nom_recette_defaut_cocktail1));
+        recette.setTpsPreparation(10);
         recette.setTpsCuisson(0);
-        recette.setIngredients("rhum, jus d'orange, jus de pamplemousse, jus d'ananas, sirop de sucre de canne");
+        recette.setIngredients("1L rhum blanc(ou ambré), 1L jus d'orange, 1L jus de pamplemousse rose, 1L jus d'ananas, 50cL sirop de sucre de canne, 1c. à café de cannelle en poudre");
         recette.setDifficulte("moyenne");
         recette.setCategorie("cocktail");
-        recette.setTag("sucré, froid");
+        recette.setTag("sucré, froid, alcoolisé");
         recette.setCheminImg("");
+        recette.setNbPersonnes(8);
+        recette.setFavoris(0);
         recetteManager.insertRecette(recette);
 
         instruction = new Instruction();
         instruction.setNumEtape(1);
         instruction.setIdRecette(recetteManager.getRecetteByNom(recette.getNomRecette()).getIdRecette());
-        instruction.setLibelle("La recette arrive, flemme de rédiger actuellemment.");
+        instruction.setLibelle("Commencez votre punch antillais en prévoyant grand récipient comme un saladier ou même une cocotte." +
+                        " Pensez que ce récipient doit ensuite entrer dans votre réfrigérateur pour conserver votre punch bien au frais."+
+                        "Versez dans ce récipient le rhum, le jus d’orange, le pamplemousse rose, l’ananas, le sirop de sucre de canne et la cannelle en poudre.");
         instructionManager.insertInstruction(instruction);
+
+        instruction.setNumEtape(2);
+        instruction.setIdRecette(recetteManager.getRecetteByNom(recette.getNomRecette()).getIdRecette());
+        instruction.setLibelle("Veillez à bien respecter les doses indiquées. Vous pouvez toutefois augmenter ou diminuer la dose de rhum"+
+                " en fonction de vos envies mais pensez à goûter votre punch avant de le servir pour éviter toute erreur de dosage." +
+                " Mélangez bien le tout jusqu'à obtenir une couleur homogène à l'aide d'une spatule ou d'une cuillère en bois.");
+        instructionManager.insertInstruction(instruction);
+
+        instruction.setNumEtape(3);
+        instruction.setIdRecette(recetteManager.getRecetteByNom(recette.getNomRecette()).getIdRecette());
+        instruction.setLibelle("Réservez votre punch au réfrigérateur au moins 1 heure, jusqu’au moment de le consommer."+
+                " Servez-le très frais dans des verres à cocktail sur lesquels vous pouvez placer un quartier d’orange ou de citron."+
+                " Il est inutile d'ajouter des glaçons à votre punch planteur facile car l'eau pourrait en dénaturer le goût."+
+                " Vous pouvez aussi présenter votre punch planteur dans un grand saladier avec une louche pour que vos invités se"+
+                " servent eux-mêmes.");
+        instructionManager.insertInstruction(instruction);
+
+
         Toast.makeText(this, "ajout de la recette: "+recette.getNomRecette(), Toast.LENGTH_SHORT).show();
 
     }
@@ -264,7 +292,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_cocktail) {
             bundle.putString("categorie", "cocktail");
             fragment.setArguments(bundle);
-
+        }else if(id == R.id.nav_favoris){
+            bundle.putString("categorie", "favoris");
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_ajouter) {
             fragment = new FragmentAjouter();
         }
@@ -272,7 +302,7 @@ public class MainActivity extends AppCompatActivity
                 FragmentManager frM = getFragmentManager();
                 frM.beginTransaction().replace(R.id.content_frame, fragment).commit();
             }else{
-                Toast.makeText(this, "problème avec les bundles de recettes !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "problème de selection dans le menu.", Toast.LENGTH_SHORT).show();
             }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

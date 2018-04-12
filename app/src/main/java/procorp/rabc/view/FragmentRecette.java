@@ -37,9 +37,10 @@ public class FragmentRecette extends Fragment {
 
     ImageView imgModif;
     ImageView gallery;
-    String path;
+    ImageView favoris;
 
     TextView nomRecette;
+    TextView nbPers;
     TextView tpsPrep;
     TextView tpsCuiss;
     TextView difficulte;
@@ -64,11 +65,12 @@ public class FragmentRecette extends Fragment {
          instructionManager.open();
          recette = recetteManager.getRecetteById(idRecette);
 
-
          imgModif = myView.findViewById(R.id.recette_modif);
 
          gallery = myView.findViewById(R.id.gallery);
+         favoris = myView.findViewById(R.id.recette_favoris);
          nomRecette = myView.findViewById(R.id.recette_nomRecette);
+         nbPers = myView.findViewById(R.id.recette_nbPers);
          tpsPrep = myView.findViewById(R.id.recette_tpsPrep);
          tpsCuiss = myView.findViewById(R.id.recette_tpsCuiss);
          difficulte = myView.findViewById(R.id.recette_difficulte);
@@ -78,12 +80,32 @@ public class FragmentRecette extends Fragment {
 
 
         if(recette.getCheminImg().equals("")) {
-            gallery.setImageResource(R.drawable.ic_gallery);
+            if(recette.getIdRecette() == 1 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_entree1))){
+                gallery.setImageResource(R.mipmap.defaut_salade_quercynoise);
+            }else if(recette.getIdRecette() == 2 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_plat1))){
+                gallery.setImageResource(R.mipmap.defaut_tartiflette);
+            }else if(recette.getIdRecette() == 3 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_dessert1))){
+                gallery.setImageResource(R.mipmap.defaut_pain_perdu);
+            }else if(recette.getIdRecette() == 4 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_dessert2))){
+                gallery.setImageResource(R.mipmap.defaut_mousse_chocolat);
+            }else if(recette.getIdRecette() == 5 && recette.getNomRecette().equals(myView.getContext().getResources().getString(R.string.nom_recette_defaut_cocktail1))){
+                gallery.setImageResource(R.mipmap.defaut_punch);
+            }else {
+                gallery.setImageResource(R.drawable.ic_gallery);
+            }
         }else{
             gallery.setImageBitmap(BitmapFactory.decodeFile(recette.getCheminImg()));
             gallery.setVisibility(View.VISIBLE);
         }
-         nomRecette.setText(recette.getNomRecette());
+        if(recette.getFavoris() == 1){
+            favoris.setImageResource(R.drawable.ic_full_star);
+        }else{
+            favoris.setImageResource(R.drawable.ic_blank_star);
+        }
+
+
+        nomRecette.setText(recette.getNomRecette());
+         nbPers.setText(recette.getNbPersonnes() + "Pers");
          tpsPrep.setText(recette.getTpsPreparation()+"min");
          tpsCuiss.setText(recette.getTpsCuisson()+"min");
          difficulte.setText(recette.getDifficulte());

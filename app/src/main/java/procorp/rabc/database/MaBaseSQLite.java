@@ -21,6 +21,8 @@ public class MaBaseSQLite extends SQLiteOpenHelper{
     public static final String COL_CATEGORIE = "categorie";
     public static final String COL_TAG = "tag";      //stocker sous forme de string séparé par des virgules
     public static final String COL_CHEMINIMG = "cheminImg";
+    public static final String COL_NBPERSONNES = "nbPersonnes";
+    public static final String COL_FAVORIS = "favoris";
 
     //instruction
     private static final String TABLE_INSTRUCTION = "table_instruction";
@@ -39,7 +41,9 @@ public class MaBaseSQLite extends SQLiteOpenHelper{
             + COL_INGREDIENTS + " TEXT, "
             + COL_CATEGORIE + " TEXT, "
             + COL_TAG + " TEXT, "
-            + COL_CHEMINIMG + " TEXT );";
+            + COL_CHEMINIMG + " TEXT, "
+            + COL_NBPERSONNES + " INTEGER, "
+            + COL_FAVORIS + " INTEGER );";
 
     public static final String CREATE_TABLE_IDINSTRUCTION = "CREATE TABLE " + TABLE_INSTRUCTION + " ( "
             + COL_IDINSTRUCTION + " INTEGER PRIMARY KEY AUTOINCREMENT, "
